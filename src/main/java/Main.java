@@ -49,6 +49,8 @@ public class Main {
 
         //setting up a new product category
         ProductCategory tablet = new ProductCategory("Tablet", "Hardware", "A tablet computer, commonly shortened to tablet, is a thin, flat mobile computer with a touchscreen display.");
+        ProductCategory phone = new ProductCategory("Phone", "Hardware", "Phone");
+        productCategoryDataStore.add(phone);
         productCategoryDataStore.add(tablet);
 
         //setting up products and printing it
@@ -56,6 +58,7 @@ public class Main {
         productDataStore.add(new Product("Lenovo IdeaPad Miix 700", 479, "USD", "Keyboard cover is included. Fanless Core m5 processor. Full-size USB ports. Adjustable kickstand.", tablet, lenovo));
         productDataStore.add(new Product("Amazon Fire HD 8", 89, "USD", "Amazon's latest Fire HD 8 tablet is a great value for media consumption.", tablet, amazon));
 
+        productDataStore.add(new Product("ShittyPhone", 89, "USD", "Amazon's latest Fire HD 8 tablet is a great value for media consumption.", phone, amazon));
     }
 
 
