@@ -49,7 +49,7 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Product categories <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#" th:text="${category.name}">Action2</a></li>
+                        <li><a href="#">Action2</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
@@ -66,18 +66,18 @@
     <h1>Codecool Shop</h1>
 </div> -->
 
-<div class="container">
-    <div class="well well-sm" th:each="cat,iterStat : ${category}" th:each="prod,iterStat : ${products}">
+<div class="container" th:each="cat,iterStat : ${category}" style="margin-top: 100px;">
+    <div class="well well-sm" >
         <strong th:text="${cat.name}">Category Title</strong>
     </div>
 
     <div id="products" class="row list-group">
 
-        <div class="item col-xs-4 col-lg-4">
-            <div class="thumbnail">
+        <div class="item col-xs-4 col-lg-4" th:each="prod,iterStat : ${products}">
+            <div class="thumbnail" th:if="${cat.name} == ${prod.productCategory.name}">
                 <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" th:attr="src='/img/product_' + ${prod.id} + '.jpg'" alt="" />
                 <div class="caption">
-                    <h4 class="group inner list-group-item-heading" th:text="${prod.id}">Product name</h4>
+                    <h4 class="group inner list-group-item-heading" th:text="${prod.name}">Product name</h4>
                     <p class="group inner list-group-item-text" th:text="${prod.description}">Product description... </p>
                     <div class="row">
                         <div class="col-xs-12 col-md-6">
