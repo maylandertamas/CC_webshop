@@ -29,9 +29,42 @@
 
 <body>
 
-<div class="jumbotron text-center">
+<!-- Fixed navbar -->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">CTF webshop</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Product categories <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" th:text="${category.name}">Action2</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Suppliers <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Action</a></li>
+                    </ul>
+                </li>  </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+
+<!-- <div class="jumbotron text-center">
     <h1>Codecool Shop</h1>
-</div>
+</div> -->
 
 <div class="container">
     <div class="well well-sm" th:each="cat,iterStat : ${category}" th:each="prod,iterStat : ${products}">
@@ -44,7 +77,7 @@
             <div class="thumbnail">
                 <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" th:attr="src='/img/product_' + ${prod.id} + '.jpg'" alt="" />
                 <div class="caption">
-                    <h4 class="group inner list-group-item-heading" th:text="${prod.name}">Product name</h4>
+                    <h4 class="group inner list-group-item-heading" th:text="${prod.id}">Product name</h4>
                     <p class="group inner list-group-item-text" th:text="${prod.description}">Product description... </p>
                     <div class="row">
                         <div class="col-xs-12 col-md-6">
