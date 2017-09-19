@@ -18,18 +18,23 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ProductController {
-
     public static ModelAndView renderProducts(Request req, Response res) {
+
+        Map params = new HashMap<>();
+        String productCategoryId = req.queryParams("id");
         ProductDao productDataStore = ProductDaoMem.getInstance();
         ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
 
-        Map params = new HashMap<>();
-        params.put("category", productCategoryDataStore.getAll());
-        params.put("products", productDataStore.getAll());
-        /*for (int i = 1; i < productCategoryDataStore.getAll().size()+1; i++) {
-            params.put("products", productDataStore.getBy(productCategoryDataStore.find(i)));
-        }*/
-        System.out.println(params);
+
+
+        params.put("allCategory", productCategoryDataStore.getAll());
+        if (productCategoryId != null) {
+            params.put("category", productCategoryDataStore.find(Integer.parseInt(productCategoryId)));
+            params.put("products", productDataStore.getBy(productCategoryDataStore.find(Integer.parseInt(productCategoryId))));
+        } else {
+            params.put("category", productCategoryDataStore.getAll());
+            params.put("products", productDataStore.getAll());
+        }
         return new ModelAndView(params, "product/index");
     }
 
