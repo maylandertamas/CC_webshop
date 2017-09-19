@@ -34,14 +34,14 @@ public class ProductController {
             params.put("category", productCategoryDataStore.find(Integer.parseInt(productCategoryId)));
             params.put("products", productDataStore.getBy(productCategoryDataStore.find(Integer.parseInt(productCategoryId))));
         } else if (supplierId != null) {
-            params.put("category", productCategoryDataStore.getAll());
+            params.put("category", supplierDataStore.find(Integer.parseInt(supplierId)).getCategory());
             params.put("products", supplierDataStore.find(Integer.parseInt(supplierId)).getProducts());
-            System.out.println(params);
         } else {
             params.put("suppliers", supplierDataStore.getAll());
             params.put("category", productCategoryDataStore.getAll());
             params.put("products", productDataStore.getAll());
         }
+        System.out.println(params);
         return new ModelAndView(params, "product/index");
     }
 

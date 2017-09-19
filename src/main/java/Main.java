@@ -44,6 +44,7 @@ public class Main {
 
         //setting up a new supplier
         Supplier amazon = new Supplier("Amazon", "Digital content and services");
+
         supplierDataStore.add(amazon);
         Supplier lenovo = new Supplier("Lenovo", "Computers");
         supplierDataStore.add(lenovo);
@@ -60,7 +61,10 @@ public class Main {
         productDataStore.add(new Product("Amazon Fire HD 8", 89, "USD", "Amazon's latest Fire HD 8 tablet is a great value for media consumption.", tablet, amazon));
 
         productDataStore.add(new Product("ShittyPhone", 89, "USD", "Amazon's latest Fire HD 8 tablet is a great value for media consumption.", phone, amazon));
+        System.out.println(amazon.getCategory());
     }
+
+
 
 
 }
