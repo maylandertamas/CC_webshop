@@ -7,12 +7,10 @@ import com.codecool.shop.controller.ProductController;
 import com.codecool.shop.dao.*;
 import com.codecool.shop.dao.implementation.*;
 import com.codecool.shop.model.*;
-import jdk.nashorn.internal.parser.JSONParser;
 import spark.Request;
 import spark.Response;
 import spark.template.thymeleaf.ThymeleafTemplateEngine;
-
-import java.util.Map;
+import org.json.simple.JSONObject;
 
 public class Main {
 
@@ -34,13 +32,18 @@ public class Main {
 
         // Equivalent with above
         get("/index", (Request req, Response res) -> {
-           System.out.println(req.queryParams("id"));
-           ProductDao productDataStore = ProductDaoMem.getInstance();
-           CartInterface cart = Cart.getCart();
-           cart.addToCart(productDataStore.find(Integer.valueOf(req.queryParams("id"))));
            return new ThymeleafTemplateEngine().render( ProductController.renderProducts(req, res));
         });
 
+        get("/index/add", (Request req, Response res) -> {
+            ProductDao productDataStore = ProductDaoMem.getInstance();
+            CartInterface cart = Cart.getCart();
+            cart.addToCart(productDataStore.find(Integer.valueOf(req.queryParams("id"))));
+            JSONObject j = new JSONObject();
+            j.put("firstName", "apád");
+            j.put("lastName", "fasza");
+            return j; //productDataStore.find(Integer.valueOf(req.queryParams("id")));
+        });
         // Add this line to your project to enable the debug screen
         enableDebugScreen();
     }

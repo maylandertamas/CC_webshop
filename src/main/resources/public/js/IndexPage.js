@@ -9,9 +9,11 @@ $(function() {
         $.ajax({
             method: 'GET',
             data: dataMap,
-            url: '/index',
+            url: '/index/add',
             success: function(dataMap) {
-            }
+                json = $.parseJSON(dataMap);
+                alert(json.firstName);
+                }
         });
     });
 });
