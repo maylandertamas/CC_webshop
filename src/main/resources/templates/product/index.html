@@ -57,7 +57,17 @@
                     <ul class="dropdown-menu">
                         <li th:each="sup,iterStat : ${allSuppliers}"><a th:href="@{~/index(sid=${sup.id})}" th:text="${sup.name}">Action2</a></li>
                     </ul>
-                </li>  </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Cart <span class="caret"></span></a>
+                    <div id="cart" class="dropdown-menu">
+                        <p th:each="item, iterStat : ${cartContents}" th:text="${item.name + ' ' + item.defaultPrice}">Items</p>
+                    </div>
+                </li>
+                <li>
+                   <a href="#" data-toggle="modal" data-target="#myModal">Cart</a>
+                </li>
+            </ul>
         </div><!--/.nav-collapse -->
     </div>
 </nav>
@@ -95,11 +105,41 @@
         </div>
     </div>
 </div>
-<div id="cart" th:each="item, iterStat : ${cartContents}">
+
+<div id="cartt" th:each="item, iterStat : ${cartContents}">
     <p th:text="${item.name}">cart contents fasz
 
     </p>
 </div>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="myModal" th:with="summ=${summ}">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Cart</h4>
+            </div>
+            <div class="modal-body">
+                <p style="font-weight: bold;">
+                <span style="padding-right:60%;">Product name:</span>
+                <span>Price</span>
+                </p>
+                <p th:each="item, iterStat : ${cartContents}">
+                    <span style="padding-right: 70%;" th:text="${item.name}">Item</span>
+                    <span th:text="${item.defaultPrice}">Price</span>
+                </p>
+                <hr />
+                <p>Total: <span></span></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
 <div th:replace="footer :: copy"></div>
 
 </body>

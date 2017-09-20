@@ -67,6 +67,7 @@ public class Main {
 
         CartInterface cart = Cart.getCart();
         cart.addToCart(shittyPhone);
+        cart.addToCart(shittyPhone);
         System.out.println(cart.getCartContents());
     }
 

@@ -38,5 +38,13 @@ public class Cart implements CartInterface {
         return null;
     }
 
+    /*public float summUp() {
+        float i = 0;
+        for (Product item: cartContents){
+            i = item.getDefaultPrice() + i;
+        }
+        return i;
+    }*/
+
 
 }
