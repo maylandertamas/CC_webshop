@@ -66,9 +66,12 @@
     <h1>Codecool Shop</h1>
 </div> -->
 
-<div class="container" th:each="cat,iterStat : ${category}" style="margin-top: 100px;">
-    <div class="well well-sm" >
+<div class="container" th:each="cat,iterStat : ${category}">
+    <!--<div th:if="${cat.getProducts().size() >= 0}"> -->
+    <div class="well well-sm">
+
         <strong th:text="${cat.name}">Category Title</strong>
+    <!--</div>-->
     </div>
 
     <div id="products" class="row list-group">
@@ -92,7 +95,11 @@
         </div>
     </div>
 </div>
+<div id="cart" th:each="item, iterStat : ${cartContents}">
+    <p th:text="${item.name}">cart contents fasz
 
+    </p>
+</div>
 <div th:replace="footer :: copy"></div>
 
 </body>

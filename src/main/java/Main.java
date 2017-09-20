@@ -1,6 +1,8 @@
 import static spark.Spark.*;
 import static spark.debug.DebugScreen.enableDebugScreen;
 
+import com.codecool.shop.Cart.Cart;
+import com.codecool.shop.Cart.CartInterface;
 import com.codecool.shop.controller.ProductController;
 import com.codecool.shop.dao.*;
 import com.codecool.shop.dao.implementation.*;
@@ -29,7 +31,7 @@ public class Main {
 
         // Equivalent with above
         get("/index", (Request req, Response res) -> {
-           return new ThymeleafTemplateEngine().render( ProductController.renderProducts(req, res) );
+           return new ThymeleafTemplateEngine().render( ProductController.renderProducts(req, res));
         });
 
         // Add this line to your project to enable the debug screen
@@ -59,9 +61,13 @@ public class Main {
         productDataStore.add(new Product("Amazon Fire", 49.9f, "USD", "Fantastic price. Large content ecosystem. Good parental controls. Helpful technical support.", tablet, amazon));
         productDataStore.add(new Product("Lenovo IdeaPad Miix 700", 479, "USD", "Keyboard cover is included. Fanless Core m5 processor. Full-size USB ports. Adjustable kickstand.", tablet, lenovo));
         productDataStore.add(new Product("Amazon Fire HD 8", 89, "USD", "Amazon's latest Fire HD 8 tablet is a great value for media consumption.", tablet, amazon));
+        Product shittyPhone = new Product("ShittyPhone", 89, "USD", "Amazon's latest Fire HD 8 tablet is a great value for media consumption.", phone, amazon);
+        productDataStore.add(shittyPhone);
 
-        productDataStore.add(new Product("ShittyPhone", 89, "USD", "Amazon's latest Fire HD 8 tablet is a great value for media consumption.", phone, amazon));
-        System.out.println(amazon.getCategory());
+
+        CartInterface cart = Cart.getCart();
+        cart.addToCart(shittyPhone);
+        System.out.println(cart.getCartContents());
     }
 
 
