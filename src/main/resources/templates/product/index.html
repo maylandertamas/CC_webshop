@@ -59,12 +59,6 @@
                         <li th:each="sup,iterStat : ${allSuppliers}"><a th:href="@{~/index(sid=${sup.id})}" th:text="${sup.name}">Action2</a></li>
                     </ul>
                 </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Cart <span class="caret"></span></a>
-                    <div id="cart" class="dropdown-menu">
-                        <p th:each="item, iterStat : ${cartContents}" th:text="${item.name + ' ' + item.defaultPrice}">Items</p>
-                    </div>
-                </li>
                 <li>
                    <a href="#" data-toggle="modal" data-target="#myModal">Cart</a>
                 </li>
@@ -73,20 +67,11 @@
     </div>
 </nav>
 
-<!-- <div class="jumbotron text-center">
-    <h1>Codecool Shop</h1>
-</div> -->
-
 <div class="container" th:each="cat,iterStat : ${category}">
-    <!--<div th:if="${cat.getProducts().size() >= 0}"> -->
     <div class="well well-sm">
-
         <strong th:text="${cat.name}">Category Title</strong>
-    <!--</div>-->
     </div>
-
     <div id="products" class="row list-group">
-
         <div class="item col-xs-4 col-lg-4" th:each="prod,iterStat : ${products}" th:if="${cat.name} == ${prod.productCategory.name}">
             <div class="thumbnail">
                 <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" th:attr="src='/img/product_' + ${prod.id} + '.jpg'" alt="" />
@@ -106,13 +91,6 @@
         </div>
     </div>
 </div>
-
-<div id="cartt" th:each="item, iterStat : ${cartContents}">
-    <p th:text="${item.name}">cart contents fasz
-
-    </p>
-</div>
-
 <div class="modal fade" tabindex="-1" role="dialog" id="myModal" th:with="summ=${summ}">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -121,20 +99,26 @@
                 <h4 class="modal-title">Cart</h4>
             </div>
             <div class="modal-body">
-                <p style="font-weight: bold;">
-                <span style="padding-right:60%;">Product name:</span>
-                <span>Price</span>
-                </p>
-                <p th:each="item, iterStat : ${cartContents}">
-                    <span style="padding-right: 70%;" th:text="${item.name}">Item</span>
-                    <span th:text="${item.defaultPrice}">Price</span>
-                </p>
-                <hr />
-                <p>Total: <span></span></p>
+                <div class="col-xs-6">
+                    <p th:each="item, iterStat : ${cartContents}">
+                        <span th:text="${item.name}">Item</span>
+                    </p>
+                </div>
+                <div class="col-xs-6">
+                    <p th:each="item, iterStat : ${cartContents}">
+                        <span th:text="${item.defaultPrice}">Price</span>
+                    </p>
+                </div>
+                <div class="col-xs-6">
+                    <p class="bold">Total:</p>
+                </div>
+                <div class="col-xs-6">
+                    <span class="bold" th:text="${productSumm}"></span>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button href="#" type="button" class="btn btn-primary">Checkout</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
