@@ -2,6 +2,10 @@
     padding: 10px;
 }
 
+.bold {
+    font-weight: bold;
+}
+
 .glyphicon {
     margin-right:5px;
 }

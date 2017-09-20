@@ -9,6 +9,6 @@ public interface CartInterface {
     void removeFromCart(int id);
     void addToCart(Product product);
     Product find(int id);
-    //public float summUp;
+    public float summUp();
 
 }
