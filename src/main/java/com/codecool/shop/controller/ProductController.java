@@ -43,7 +43,6 @@ public class ProductController {
             params.put("category", productCategoryDataStore.getAll());
             params.put("products", productDataStore.getAll());
         }
-        System.out.println(params);
         CartInterface cart = Cart.getCart();
 
         params.put("cartContents", cart.getCartContents());

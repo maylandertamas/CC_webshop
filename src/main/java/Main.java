@@ -7,9 +7,12 @@ import com.codecool.shop.controller.ProductController;
 import com.codecool.shop.dao.*;
 import com.codecool.shop.dao.implementation.*;
 import com.codecool.shop.model.*;
+import jdk.nashorn.internal.parser.JSONParser;
 import spark.Request;
 import spark.Response;
 import spark.template.thymeleaf.ThymeleafTemplateEngine;
+
+import java.util.Map;
 
 public class Main {
 
@@ -31,6 +34,10 @@ public class Main {
 
         // Equivalent with above
         get("/index", (Request req, Response res) -> {
+           System.out.println(req.queryParams("id"));
+           ProductDao productDataStore = ProductDaoMem.getInstance();
+           CartInterface cart = Cart.getCart();
+           cart.addToCart(productDataStore.find(Integer.valueOf(req.queryParams("id"))));
            return new ThymeleafTemplateEngine().render( ProductController.renderProducts(req, res));
         });
 
@@ -68,7 +75,6 @@ public class Main {
         CartInterface cart = Cart.getCart();
         cart.addToCart(shittyPhone);
         cart.addToCart(shittyPhone);
-        System.out.println(cart.getCartContents());
     }
 
 
