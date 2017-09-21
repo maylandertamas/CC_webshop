@@ -56,3 +56,20 @@ $(document).on('click', '.addProduct', function(){
     });
 });
 
+$(document).on('click', '.removeItem', function(){
+    var data = $(this).data('remove');
+    data = String(data);
+    dataMap = {
+        removeid: data
+    }
+    $.ajax({
+        method: 'GET',
+        data: dataMap,
+        url: '/index/remove-product',
+        success: function(dataMap) {
+            $('.modal').load('/refresh-cart');
+            $('#cartcounter').text("Cart (" + dataMap + ")");
+        }
+    });
+});
+
