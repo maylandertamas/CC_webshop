@@ -8,9 +8,12 @@ import com.codecool.shop.controller.ProductController;
 import com.codecool.shop.dao.*;
 import com.codecool.shop.dao.implementation.*;
 import com.codecool.shop.model.*;
+import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 import spark.template.thymeleaf.ThymeleafTemplateEngine;
+
+import java.util.HashMap;
 //import org.json.simple.JSONObject;
 
 public class Main {
@@ -71,6 +74,25 @@ public class Main {
             productToRemove.setDefaultQuantity();
             cart.removeFromCart(productToRemove.getId());
             return cart.generateCartSize();
+        });
+
+        get("/index/checkout", (Request req, Response res) -> {
+            return new ThymeleafTemplateEngine().render(
+                    new ModelAndView(new HashMap<>(), "product/checkout"));
+        });
+
+        post("/index/checkout/submit", (Request req, Response res) -> {
+            OrderDao newOrder = new OrderDaoMem();
+
+            String name = req.queryParams("name");
+            String email = req.queryParams("email");
+            String phoneNumber = req.queryParams("phoneNumber");
+            String billingAddress = req.queryParams("billingAddress");
+            String shippingAddress = req.queryParams("shippingAddress");
+            String payment = req.queryParams("payment");
+            newOrder.addUserData(name, email, phoneNumber, billingAddress, shippingAddress, payment);
+
+            return "Checkout processed";
         });
 
 
