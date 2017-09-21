@@ -77,10 +77,6 @@ public class Main {
         Product shittyPhone = new Product("ShittyPhone", 89, "USD", "Amazon's latest Fire HD 8 tablet is a great value for media consumption.", phone, amazon);
         productDataStore.add(shittyPhone);
 
-
-        CartInterface cart = Cart.getCart();
-        cart.addToCart(shittyPhone);
-        cart.addToCart(shittyPhone);
     }
 
 

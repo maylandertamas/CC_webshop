@@ -107,6 +107,7 @@
                 <div class="col-xs-6">
                     <p th:each="item, iterStat : ${cartContents}">
                         <span th:text="${item.defaultPrice}">Price</span>
+                        <span th:text="${item.quantity}">0</span>
                     </p>
                 </div>
                 <div class="col-xs-6">

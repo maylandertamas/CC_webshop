@@ -23,10 +23,17 @@ public class Cart implements CartInterface {
 
     public void removeFromCart(int id){
         cartContents.remove(find(id));
+
     }
 
     public void addToCart(Product product){
-        cartContents.add(product);
+        if (cartContents.contains(product)) {
+            product.addQuantityInCart();
+        }
+        else {
+            cartContents.add(product);
+            product.addQuantityInCart();
+        }
     }
 
     public Product find(int id){

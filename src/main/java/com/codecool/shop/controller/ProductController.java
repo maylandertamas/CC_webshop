@@ -46,7 +46,7 @@ public class ProductController {
         CartInterface cart = Cart.getCart();
         params.put("productSumm", cart.summUp());
         params.put("cartContents", cart.getCartContents());
-        
+        System.out.println(cart.getCartContents());
         return new ModelAndView(params, "product/index");
     }
 

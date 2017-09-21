@@ -12,7 +12,6 @@ $(function() {
             url: '/index/add',
             success: function(dataMap) {
                 $('.modal-dialog').load('/refresh-cart');
-                alert("hello");
                 $('#cartcounter').text("Cart (" + dataMap + ")");
                 }
         });
