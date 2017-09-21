@@ -11,8 +11,7 @@ $(function() {
             data: dataMap,
             url: '/index/add',
             success: function(dataMap) {
-                json = $.parseJSON(dataMap);
-                alert(json.firstName);
+                $('.modal-dialog').load('/refresh-cart');
                 }
         });
     });

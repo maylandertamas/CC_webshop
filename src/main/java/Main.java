@@ -3,6 +3,7 @@ import static spark.debug.DebugScreen.enableDebugScreen;
 
 import com.codecool.shop.Cart.Cart;
 import com.codecool.shop.Cart.CartInterface;
+import com.codecool.shop.controller.CartController;
 import com.codecool.shop.controller.ProductController;
 import com.codecool.shop.dao.*;
 import com.codecool.shop.dao.implementation.*;
@@ -10,7 +11,7 @@ import com.codecool.shop.model.*;
 import spark.Request;
 import spark.Response;
 import spark.template.thymeleaf.ThymeleafTemplateEngine;
-import org.json.simple.JSONObject;
+//import org.json.simple.JSONObject;
 
 public class Main {
 
@@ -39,11 +40,13 @@ public class Main {
             ProductDao productDataStore = ProductDaoMem.getInstance();
             CartInterface cart = Cart.getCart();
             cart.addToCart(productDataStore.find(Integer.valueOf(req.queryParams("id"))));
-            JSONObject j = new JSONObject();
-            j.put("firstName", "apád");
-            j.put("lastName", "fasza");
-            return j; //productDataStore.find(Integer.valueOf(req.queryParams("id")));
+            return true;
         });
+
+        get("/refresh-cart", (Request req, Response res) -> {
+            return new ThymeleafTemplateEngine().render( CartController.renderProducts(req, res));
+        });
+
         // Add this line to your project to enable the debug screen
         enableDebugScreen();
     }
