@@ -68,10 +68,10 @@ public class Main {
         get("/index/remove-product", (Request req, Response res) -> {
             CartInterface cart = Cart.getCart();
             Product productToRemove = cart.find(Integer.valueOf(req.queryParams("removeid")));
+            productToRemove.setDefaultQuantity();
             cart.removeFromCart(productToRemove.getId());
             return cart.generateCartSize();
         });
-
 
 
         // Add this line to your project to enable the debug screen
