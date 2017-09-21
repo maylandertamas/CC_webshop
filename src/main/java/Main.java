@@ -47,6 +47,18 @@ public class Main {
             return new ThymeleafTemplateEngine().render( CartController.renderProducts(req, res));
         });
 
+        get("/index/substract-product", (Request req, Response res) -> {
+            req.queryParams("substractid");
+            CartInterface cart = Cart.getCart();
+            Product productQuantitySubstract = cart.find(Integer.valueOf(req.queryParams("substractid")));
+            if (productQuantitySubstract.getQuantityInCart() == 1) {
+                cart.removeFromCart(productQuantitySubstract.getId());
+            } else {
+                productQuantitySubstract.subtractQuantityInCart();
+            }
+            return cart.generateCartSize();
+        });
+
         // Add this line to your project to enable the debug screen
         enableDebugScreen();
     }

@@ -17,3 +17,21 @@ $(function() {
         });
     });
 });
+
+    $(document).on('click', '.substractProduct', function(){
+        var data = $(this).data('substract');
+        data = String(data);
+        dataMap = {
+            substractid: data
+        }
+        $.ajax({
+            method: 'GET',
+            data: dataMap,
+            url: '/index/substract-product',
+            success: function(dataMap) {
+                $('.modal-dialog').load('/refresh-cart');
+                $('#cartcounter').text("Cart (" + dataMap + ")");
+            }
+        });
+    });
+
