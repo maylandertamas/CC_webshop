@@ -80,6 +80,11 @@ public class Main {
                     new ModelAndView(new HashMap<>(), "product/checkout"));
         });
 
+        post("/index/checkout/submit", (Request req, Response res) -> {
+            System.out.println(req.body());
+            return null;
+        });
+
 
 
         // Add this line to your project to enable the debug screen
