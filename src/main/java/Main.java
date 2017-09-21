@@ -8,9 +8,12 @@ import com.codecool.shop.controller.ProductController;
 import com.codecool.shop.dao.*;
 import com.codecool.shop.dao.implementation.*;
 import com.codecool.shop.model.*;
+import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 import spark.template.thymeleaf.ThymeleafTemplateEngine;
+
+import java.util.HashMap;
 //import org.json.simple.JSONObject;
 
 public class Main {
@@ -70,6 +73,11 @@ public class Main {
             Product productToRemove = cart.find(Integer.valueOf(req.queryParams("removeid")));
             cart.removeFromCart(productToRemove.getId());
             return cart.generateCartSize();
+        });
+
+        get("/index/checkout", (Request req, Response res) -> {
+            return new ThymeleafTemplateEngine().render(
+                    new ModelAndView(new HashMap<>(), "product/checkout"));
         });
 
 
