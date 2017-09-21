@@ -65,7 +65,7 @@
     </div>
 </nav>
 <div style="margin-top: 80px;">
-    <form>
+    <form action="/index/checkout/submit" method="post">
         <label>Name: </label>
         <textarea rows="1" cols="20"></textarea>
         <label>E-mail: </label>
@@ -76,6 +76,11 @@
         <textarea rows="1" cols="20"></textarea>
         <label>Shipping Address: </label>
         <textarea rows="1" cols="20"></textarea>
+        <label>Select payment type: </label>
+        <select>
+            <option>Credit Card</option>
+            <option>Pay Pal</option>
+        </select>
         <button type="submit">Continue to Pay</button>
     </form>
 </div>
