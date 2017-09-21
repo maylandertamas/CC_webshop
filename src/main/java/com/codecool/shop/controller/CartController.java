@@ -23,6 +23,7 @@ public class CartController {
         CartInterface cart = Cart.getCart();
         params.put("productSumm", cart.summUp());
         params.put("cartContents", cart.getCartContents());
+        params.put("cartSize", cart.getCartContents().size());
 
         return new ModelAndView(params, "product/cart");
     }
