@@ -64,25 +64,39 @@
         </div><!--/.nav-collapse -->
     </div>
 </nav>
-<div style="margin-top: 80px;">
+<div id="mainwrap">
+    <div class="container">
     <form action="/index/checkout/submit" method="post">
+        <div class="form-group">
         <label>Name: </label>
         <input name="name" type="text"/>
+        </div>
+        <div class="form-group">
         <label>E-mail: </label>
         <textarea name="email" rows="1" cols="20"></textarea>
+        </div>
+        <div class="form-group">
         <label>Phone Number: </label>
         <textarea rows="1" cols="20" name="phoneNumber" ></textarea>
+        </div>
+        <div class="form-group">
         <label>Billing Address: </label>
         <textarea rows="1" cols="20" name="billingAddress" ></textarea>
+        </div>
+        <div class="form-group">
         <label>Shipping Address: </label>
         <textarea rows="1" cols="20" name="shippingAddress" ></textarea>
+        </div>
+        <div class="form-group">
         <label>Select payment type: </label>
         <select name="payment" >
             <option>Credit Card</option>
             <option>Pay Pal</option>
         </select>
+        </div>
         <button type="submit">Continue to Pay</button>
     </form>
+    </div>
 </div>
 
 <div th:replace="footer :: copy"></div>

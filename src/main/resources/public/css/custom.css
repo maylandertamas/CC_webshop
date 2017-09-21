@@ -4,9 +4,16 @@
 
 #mainwrap {
     margin-top: 70px;
+    margin-bottom: 20px;
 }
 
 td a {
+    text-decoration: none;
+    text-underline: none;
+    color: gray;
+}
+
+.substractProduct, .addProduct, .removeItem {
     text-decoration: none;
     color: gray;
 }
