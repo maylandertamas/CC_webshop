@@ -16,12 +16,6 @@ public class OrderDaoMem implements OrderDao{
     @Override
     public void addUserData(String name, String email, String phoneNumber,
                             String billingAddress, String shippingAddress, String payment) {
-        System.out.println(name);
-        System.out.println(email);
-        System.out.println(phoneNumber);
-        System.out.println(billingAddress);
-        System.out.println(shippingAddress);
-        System.out.println(payment);
         userData.put("name", name);
         userData.put("email", email);
         userData.put("phonenumber", phoneNumber);

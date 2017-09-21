@@ -90,8 +90,8 @@ public class Main {
             String shippingAddress = req.queryParams("shippingAddress");
             String payment = req.queryParams("payment");
             newOrder.addUserData(name, email, phoneNumber, billingAddress, shippingAddress, payment);
-            //System.out.println(newOrder.getUserData());
-            return true;
+
+            return "Checkout processed";
         });
 
 
