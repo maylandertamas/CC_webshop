@@ -5,25 +5,47 @@
         <h4 class="modal-title">Cart</h4>
     </div>
     <div class="modal-body">
-        <div class="col-xs-6">
-            <p th:each="item, iterStat : ${cartContents}">
+        <table style="width: 100%;">
+            <thead>
+                <tr>
+                    <th style="width: 60%">Product</th>
+                    <th style="width: 20%">Quantity</th>
+                    <th style="width: 20%">Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="item, iterStat : ${cartContents}">
+                    <td th:text="${item.name}"></td>
+                    <td align="left">
+                        <a href="#" class="substractProduct" th:attr="data-substract=${item.id}">- </a>
+                        <span th:text="${item.quantityInCart}">Quantity</span>
+                        <a href="#" class="addProduct" th:attr="data-add=${item.id}"> + </a>
+                        <a class="removeItem" th:attr="data-remove=${item.id}"> x</a>
+                    </td>
+                    <td th:text="${item.defaultPrice * item.quantityInCart}"></td>
+                </tr>
+                <tr id="table-total">
+                    <td colspan="2">Total: </td>
+                    <td th:text="${productSumm}"></td>
+                </tr>
+            </tbody>
+        </table>
+        <!--
+        <ul>
+            <li th:each="item, iterStat : ${cartContents}">
                 <span th:text="${item.name}">Item</span>
                 <button href="#" class="substractProduct" th:attr="data-substract=${item.id}">-</button><span th:text="${item.quantityInCart}">Quantity</span><a href="#" class="addProduct" th:attr="data-add=${item.id}">+</a>
-            </p>
-        </div>
-        <div class="col-xs-6">
-            <p th:each="item, iterStat : ${cartContents}">
                 <span th:text="${item.defaultPrice}">Price</span>
                 <a class="removeItem" th:attr="data-remove=${item.id}">remove</a>
-            </p>
-        </div>
-
+            </li>
+        </ul>
         <div class="col-xs-6">
             <p class="bold">Total:</p>
         </div>
         <div class="col-xs-6">
             <span class="bold" th:text="${productSumm}"></span>
         </div>
+        -->
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

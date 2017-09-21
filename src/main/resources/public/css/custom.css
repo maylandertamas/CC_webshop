@@ -6,9 +6,23 @@
     margin-top: 70px;
 }
 
-.modal-body {
-    margin-bottom: 15px;
+td a {
+    text-decoration: none;
+    color: gray;
 }
+
+thead th {
+    padding-bottom: 15px;
+}
+
+#table-total {
+    font-weight: bold;
+}
+
+#table-total td {
+    padding-top: 15px;
+}
+
 
 .bold {
     font-weight: bold;
