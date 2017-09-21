@@ -67,17 +67,17 @@
 <div style="margin-top: 80px;">
     <form action="/index/checkout/submit" method="post">
         <label>Name: </label>
-        <textarea rows="1" cols="20"></textarea>
+        <input name="name" type="text"/>
         <label>E-mail: </label>
-        <textarea rows="1" cols="20"></textarea>
+        <textarea name="email" rows="1" cols="20"></textarea>
         <label>Phone Number: </label>
-        <textarea rows="1" cols="20"></textarea>
+        <textarea rows="1" cols="20" name="phoneNumber" ></textarea>
         <label>Billing Address: </label>
-        <textarea rows="1" cols="20"></textarea>
+        <textarea rows="1" cols="20" name="billingAddress" ></textarea>
         <label>Shipping Address: </label>
-        <textarea rows="1" cols="20"></textarea>
+        <textarea rows="1" cols="20" name="shippingAddress" ></textarea>
         <label>Select payment type: </label>
-        <select>
+        <select name="payment" >
             <option>Credit Card</option>
             <option>Pay Pal</option>
         </select>

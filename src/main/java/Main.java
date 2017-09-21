@@ -81,8 +81,17 @@ public class Main {
         });
 
         post("/index/checkout/submit", (Request req, Response res) -> {
-            System.out.println(req.body());
-            return null;
+            OrderDao newOrder = new OrderDaoMem();
+
+            String name = req.queryParams("name");
+            String email = req.queryParams("email");
+            String phoneNumber = req.queryParams("phoneNumber");
+            String billingAddress = req.queryParams("billingAddress");
+            String shippingAddress = req.queryParams("shippingAddress");
+            String payment = req.queryParams("payment");
+            newOrder.addUserData(name, email, phoneNumber, billingAddress, shippingAddress, payment);
+            //System.out.println(newOrder.getUserData());
+            return true;
         });
 
 
