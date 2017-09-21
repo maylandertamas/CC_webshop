@@ -2,6 +2,14 @@
     padding: 10px;
 }
 
+#mainwrap {
+    margin-top: 70px;
+}
+
+.modal-body {
+    margin-bottom: 15px;
+}
+
 .bold {
     font-weight: bold;
 }
