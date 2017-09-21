@@ -10,5 +10,6 @@ public interface CartInterface {
     void addToCart(Product product);
     Product find(int id);
     public float summUp();
+    int generateCartSize();
 
 }

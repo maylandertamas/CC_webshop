@@ -8,6 +8,7 @@ import com.codecool.shop.dao.SupplierDao;
 import com.codecool.shop.dao.implementation.ProductCategoryDaoMem;
 import com.codecool.shop.dao.implementation.ProductDaoMem;
 import com.codecool.shop.dao.implementation.SupplierDaoMem;
+import com.codecool.shop.model.Product;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -23,8 +24,7 @@ public class CartController {
         CartInterface cart = Cart.getCart();
         params.put("productSumm", cart.summUp());
         params.put("cartContents", cart.getCartContents());
-        params.put("cartSize", cart.getCartContents().size());
-
+        params.put("cartSize", cart.generateCartSize());
         return new ModelAndView(params, "product/cart");
     }
 

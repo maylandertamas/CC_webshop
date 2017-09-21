@@ -7,6 +7,7 @@
         <div class="col-xs-6">
             <p th:each="item, iterStat : ${cartContents}">
                 <span th:text="${item.name}">Item</span>
+                <span>+</span><span th:text="${item.quantityInCart}">Quantity</span><span>-</span>
             </p>
         </div>
         <div class="col-xs-6">
@@ -14,6 +15,7 @@
                 <span th:text="${item.defaultPrice}">Price</span>
             </p>
         </div>
+
         <div class="col-xs-6">
             <p class="bold">Total:</p>
         </div>

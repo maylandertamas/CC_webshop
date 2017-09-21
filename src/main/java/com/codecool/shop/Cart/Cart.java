@@ -46,11 +46,19 @@ public class Cart implements CartInterface {
     }
 
     public float summUp() {
-        float i = 0;
+        float totalProductPrice = 0;
         for (Product item: cartContents){
-            i = item.getDefaultPrice() + i;
+            totalProductPrice += (item.getDefaultPrice()*item.getQuantityInCart());
         }
-        return i;
+        return totalProductPrice;
+    }
+
+    public int generateCartSize() {
+        int crtSize = 0;
+        for (Product prod : cartContents) {
+            crtSize += prod.getQuantityInCart();
+        }
+        return crtSize;
     }
 
 

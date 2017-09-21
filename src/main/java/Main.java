@@ -40,7 +40,7 @@ public class Main {
             ProductDao productDataStore = ProductDaoMem.getInstance();
             CartInterface cart = Cart.getCart();
             cart.addToCart(productDataStore.find(Integer.valueOf(req.queryParams("id"))));
-            return cart.getCartContents().size();
+            return cart.generateCartSize();
         });
 
         get("/refresh-cart", (Request req, Response res) -> {
