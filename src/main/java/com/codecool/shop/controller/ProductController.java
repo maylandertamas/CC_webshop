@@ -1,5 +1,7 @@
 package com.codecool.shop.controller;
 
+import com.codecool.shop.Cart.Cart;
+import com.codecool.shop.Cart.CartInterface;
 import com.codecool.shop.dao.ProductCategoryDao;
 import com.codecool.shop.dao.ProductDao;
 import com.codecool.shop.dao.SupplierDao;
@@ -41,7 +43,10 @@ public class ProductController {
             params.put("category", productCategoryDataStore.getAll());
             params.put("products", productDataStore.getAll());
         }
-        System.out.println(params);
+        CartInterface cart = Cart.getCart();
+        params.put("productSumm", cart.summUp());
+        params.put("cartContents", cart.getCartContents());
+        params.put("cartSize", cart.generateCartSize());
         return new ModelAndView(params, "product/index");
     }
 
