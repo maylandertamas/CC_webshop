@@ -92,39 +92,7 @@
     </div>
 </div>
 <div class="modal fade" tabindex="-1" role="dialog" id="myModal" th:with="summ=${summ}">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Cart</h4>
-            </div>
-            <div class="modal-body">
-                <div class="col-xs-6">
-                    <p th:each="item, iterStat : ${cartContents}">
-                        <span th:text="${item.name}">Item</span>
-                        <span th:text="${item.quantityInCart}">Quantity</span>
-                    </p>
-                </div>
-
-                <div class="col-xs-6">
-                    <p class="bold">Total:</p>
-                </div>
-                <div class="col-xs-6">
-                    <span class="bold" th:text="${productSumm}"></span>
-                </div>
-                <div class="col-xs-6">
-                    <p th:each="item, iterStat : ${cartContents}">
-                        <span th:text="${item.defaultPrice}">Price</span>
-                    </p>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button href="#" type="button" class="btn btn-primary">Checkout</button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal --> -->
+</div>
 
 <div th:replace="footer :: copy"></div>
 

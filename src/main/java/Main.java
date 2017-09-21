@@ -48,7 +48,6 @@ public class Main {
         });
 
         get("/index/substract-product", (Request req, Response res) -> {
-            req.queryParams("substractid");
             CartInterface cart = Cart.getCart();
             Product productQuantitySubstract = cart.find(Integer.valueOf(req.queryParams("substractid")));
             if (productQuantitySubstract.getQuantityInCart() == 1) {
@@ -58,6 +57,15 @@ public class Main {
             }
             return cart.generateCartSize();
         });
+
+        get("/index/add-product", (Request req, Response res) -> {
+            CartInterface cart = Cart.getCart();
+            Product productQuantityAdd = cart.find(Integer.valueOf(req.queryParams("addid")));
+            productQuantityAdd.addQuantityInCart();
+            return cart.generateCartSize();
+        });
+
+
 
         // Add this line to your project to enable the debug screen
         enableDebugScreen();
