@@ -3,14 +3,15 @@ package com.codecool.shop.dao.implementation;
 import com.codecool.shop.dao.OrderDao;
 import com.codecool.shop.model.Product;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class OrderDaoMem implements OrderDao{
 
-     private HashMap<String, String> userData;
-     private List<Product> orderedProduct;
+     private HashMap<String, String> userData = new HashMap<>();
+     private List<Product> orderedProduct = new ArrayList<>();
 
     @Override
     public void addUserData(String name, String email, String phoneNumber,
