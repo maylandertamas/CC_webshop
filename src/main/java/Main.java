@@ -114,17 +114,28 @@ public class Main {
         supplierDataStore.add(lenovo);
 
         //setting up a new product category
-        ProductCategory tablet = new ProductCategory("Tablet", "Hardware", "A tablet computer, commonly shortened to tablet, is a thin, flat mobile computer with a touchscreen display.");
-        ProductCategory phone = new ProductCategory("Phone", "Hardware", "Phone");
-        productCategoryDataStore.add(phone);
-        productCategoryDataStore.add(tablet);
+        ProductCategory hats = new ProductCategory("Hats", "Hardware", "A tablet computer, commonly shortened to tablet, is a thin, flat mobile computer with a touchscreen display.");
+        ProductCategory canes = new ProductCategory("Canes", "Hardware", "Phone");
+        ProductCategory rings = new ProductCategory("Rings", "Hardware", "Phone");
+        ProductCategory neklace = new ProductCategory("Neklace", "Hardware", "Phone");
+        productCategoryDataStore.add(canes);
+        productCategoryDataStore.add(hats);
+        productCategoryDataStore.add(rings);
+        productCategoryDataStore.add(neklace);
 
         //setting up products and printing it
-        productDataStore.add(new Product("Amazon Fire", 49.9f, "USD", "Fantastic price. Large content ecosystem. Good parental controls. Helpful technical support.", tablet, amazon));
-        productDataStore.add(new Product("Lenovo IdeaPad Miix 700", 479, "USD", "Keyboard cover is included. Fanless Core m5 processor. Full-size USB ports. Adjustable kickstand.", tablet, lenovo));
-        productDataStore.add(new Product("Amazon Fire HD 8", 89, "USD", "Amazon's latest Fire HD 8 tablet is a great value for media consumption.", tablet, amazon));
-        Product shittyPhone = new Product("ShittyPhone", 89, "USD", "Amazon's latest Fire HD 8 tablet is a great value for media consumption.", phone, amazon);
-        productDataStore.add(shittyPhone);
+        productDataStore.add(new Product("Amazon Fire", 49.9f, "USD", "Fantastic price. Large content ecosystem. Good parental controls. Helpful technical support.", hats, amazon));
+        productDataStore.add(new Product("Lenovo IdeaPad Miix 700", 479, "USD", "Keyboard cover is included. Fanless Core m5 processor. Full-size USB ports. Adjustable kickstand.", hats, lenovo));
+        productDataStore.add(new Product("Amazon Fire HD 8", 89, "USD", "Amazon's latest Fire HD 8 tablet is a great value for media consumption.", hats, amazon));
+        productDataStore.add(new Product("Amazon Fire HD 9", 99, "USD", "", canes, amazon));
+        productDataStore.add(new Product("Amazon Fire HD 9", 99, "USD", "", canes, amazon));
+        productDataStore.add(new Product("Amazon Fire HD 9", 99, "USD", "", canes, amazon));
+        productDataStore.add(new Product("Amazon Fire HD 9", 99, "USD", "", rings, amazon));
+        productDataStore.add(new Product("Amazon Fire HD 9", 99, "USD", "", rings, amazon));
+        productDataStore.add(new Product("Amazon Fire HD 9", 99, "USD", "", rings, amazon));
+        productDataStore.add(new Product("Amazon Fire HD 9", 99, "USD", "", neklace, amazon));
+        productDataStore.add(new Product("Amazon Fire HD 9", 99, "USD", "", neklace, amazon));
+        productDataStore.add(new Product("Amazon Fire HD 9", 99, "USD", "", neklace, amazon));
 
     }
 
