@@ -17,10 +17,10 @@
                 <tr th:each="item, iterStat : ${cartContents}">
                     <td th:text="${item.name}"></td>
                     <td align="left">
-                        <a href="#" class="substractProduct" th:attr="data-substract=${item.id}">- </a>
+                        <span class="glyphicon glyphicon-minus substractProduct" href="#" th:attr="data-substract=${item.id}"></span>
                         <span th:text="${item.quantityInCart}">Quantity</span>
-                        <a href="#" class="addProduct" th:attr="data-add=${item.id}"> + </a>
-                        <a class="removeItem" th:attr="data-remove=${item.id}"> x</a>
+                        <span href="#" class="glyphicon glyphicon-plus addProduct" th:attr="data-add=${item.id}"></span>
+                        <span class="glyphicon glyphicon-trash removeItem" th:attr="data-remove=${item.id}"></span>
                     </td>
                     <td th:text="${item.defaultPrice * item.quantityInCart}"></td>
                 </tr>
@@ -30,22 +30,6 @@
                 </tr>
             </tbody>
         </table>
-        <!--
-        <ul>
-            <li th:each="item, iterStat : ${cartContents}">
-                <span th:text="${item.name}">Item</span>
-                <button href="#" class="substractProduct" th:attr="data-substract=${item.id}">-</button><span th:text="${item.quantityInCart}">Quantity</span><a href="#" class="addProduct" th:attr="data-add=${item.id}">+</a>
-                <span th:text="${item.defaultPrice}">Price</span>
-                <a class="removeItem" th:attr="data-remove=${item.id}">remove</a>
-            </li>
-        </ul>
-        <div class="col-xs-6">
-            <p class="bold">Total:</p>
-        </div>
-        <div class="col-xs-6">
-            <span class="bold" th:text="${productSumm}"></span>
-        </div>
-        -->
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
