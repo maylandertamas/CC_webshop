@@ -5,10 +5,12 @@ import java.util.ArrayList;
 
 public class Supplier extends BaseModel {
     private ArrayList<Product> products;
+    private ArrayList<ProductCategory> category;
 
     public Supplier(String name, String description) {
         super(name);
         this.products = new ArrayList<>();
+        this.category = new ArrayList<>();
     }
 
     public void setProducts(ArrayList<Product> products) {
@@ -19,8 +21,18 @@ public class Supplier extends BaseModel {
         return this.products;
     }
 
+    public ArrayList getCategory() {
+        return this.category;
+    }
+
     public void addProduct(Product product) {
         this.products.add(product);
+    }
+
+    public void addCategory(ProductCategory category) {
+        if (!this.category.contains(category)) {
+            this.category.add(category);
+        }
     }
 
     public String toString() {

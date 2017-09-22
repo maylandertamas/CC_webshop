@@ -1,3 +1,40 @@
+#cart {
+    padding: 10px;
+}
+
+#mainwrap {
+    margin-top: 70px;
+    margin-bottom: 20px;
+}
+
+td a {
+    text-decoration: none;
+    text-underline: none;
+    color: gray;
+}
+
+.substractProduct, .addProduct, .removeItem {
+    text-decoration: none;
+    color: gray;
+}
+
+thead th {
+    padding-bottom: 15px;
+}
+
+#table-total {
+    font-weight: bold;
+}
+
+#table-total td {
+    padding-top: 15px;
+}
+
+
+.bold {
+    font-weight: bold;
+}
+
 .glyphicon {
     margin-right:5px;
 }

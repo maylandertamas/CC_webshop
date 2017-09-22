@@ -1,6 +1,7 @@
 package com.codecool.shop.model;
 
 import java.util.Currency;
+import java.util.Locale;
 
 public class Product extends BaseModel {
 
@@ -8,13 +9,15 @@ public class Product extends BaseModel {
     private Currency defaultCurrency;
     private ProductCategory productCategory;
     private Supplier supplier;
+    private int quantityInCart;
 
 
     public Product(String name, float defaultPrice, String currencyString, String description, ProductCategory productCategory, Supplier supplier) {
         super(name, description);
         this.setPrice(defaultPrice, currencyString);
-        this.setSupplier(supplier);
+        this.setSupplier(supplier, productCategory);
         this.setProductCategory(productCategory);
+        this.quantityInCart = 0;
     }
 
     public float getDefaultPrice() {
@@ -55,11 +58,29 @@ public class Product extends BaseModel {
         return supplier;
     }
 
-    public void setSupplier(Supplier supplier) {
+    public void setSupplier(Supplier supplier, ProductCategory category) {
         this.supplier = supplier;
         this.supplier.addProduct(this);
+        this.supplier.addCategory(category);
     }
 
+    public void addQuantityInCart(){
+        quantityInCart++;
+    }
+
+    public void subtractQuantityInCart(){
+        if (quantityInCart > 0){
+            quantityInCart--;
+        }
+    }
+
+    public int getQuantityInCart(){
+        return quantityInCart;
+    }
+
+    public void setDefaultQuantity() {
+        quantityInCart = 0;
+    }
     @Override
     public String toString() {
         return String.format("id: %1$d, " +
@@ -67,12 +88,14 @@ public class Product extends BaseModel {
                         "defaultPrice: %3$f, " +
                         "defaultCurrency: %4$s, " +
                         "productCategory: %5$s, " +
-                        "supplier: %6$s",
+                        "supplier: %6$s, " +
+                        "quantity: %7$s",
                 this.id,
                 this.name,
                 this.defaultPrice,
                 this.defaultCurrency.toString(),
                 this.productCategory.getName(),
-                this.supplier.getName());
+                this.supplier.getName(),
+                this.getQuantityInCart());
     }
 }

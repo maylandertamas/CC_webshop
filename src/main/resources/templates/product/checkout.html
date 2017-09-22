@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta name="author" content="Codecool" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Codecool Shop</title>
+
+    <!-- Latest compiled and minified Jquery -->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous" />
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+
+    <script src="js/IndexPage.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/custom.css" />
+</head>
+
+<body>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">CTF webshop</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Product categories <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li th:each="cat,iterStat : ${allCategory}"><a th:href="@{~/index(cid=${cat.id})}" th:text="${cat.name}">Action2</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Suppliers <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li th:each="sup,iterStat : ${allSuppliers}"><a th:href="@{~/index(sid=${sup.id})}" th:text="${sup.name}">Action2</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#myModal" id="cartcounter">Cart (<span th:text="${cartSize}"></span><span>)</span></a>
+                </li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+<div id="mainwrap">
+    <div class="container">
+    <form action="/index/checkout/submit" method="post">
+        <div class="form-group">
+        <label>Name: </label>
+        <input name="name" type="text"/>
+        </div>
+        <div class="form-group">
+        <label>E-mail: </label>
+        <textarea name="email" rows="1" cols="20"></textarea>
+        </div>
+        <div class="form-group">
+        <label>Phone Number: </label>
+        <textarea rows="1" cols="20" name="phoneNumber" ></textarea>
+        </div>
+        <div class="form-group">
+        <label>Billing Address: </label>
+        <textarea rows="1" cols="20" name="billingAddress" ></textarea>
+        </div>
+        <div class="form-group">
+        <label>Shipping Address: </label>
+        <textarea rows="1" cols="20" name="shippingAddress" ></textarea>
+        </div>
+        <div class="form-group">
+        <label>Select payment type: </label>
+        <select name="payment" >
+            <option>Credit Card</option>
+            <option>Pay Pal</option>
+        </select>
+        </div>
+        <button type="submit">Continue to Pay</button>
+    </form>
+    </div>
+</div>
+
+<div th:replace="footer :: copy"></div>
+
+</body>
+</html>
