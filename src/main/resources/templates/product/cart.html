@@ -18,10 +18,10 @@
                 <tr th:each="item, iterStat : ${cartContents}">
                     <td th:text="${item.name}"></td>
                     <td align="left">
-                        <a style="text-decoration: none;" href="#" class="substractProduct" th:attr="data-substract=${item.id}">- </a>
+                        <span class="glyphicon glyphicon-minus substractProduct" href="#" th:attr="data-substract=${item.id}"></span>
                         <span th:text="${item.quantityInCart}">Quantity</span>
-                        <a style="text-decoration: none;" href="#" class="addProduct" th:attr="data-add=${item.id}"> + </a>
-                        <a style="text-decoration: none;" href="#" class="removeItem" th:attr="data-remove=${item.id}"> x</a>
+                        <span href="#" class="glyphicon glyphicon-plus addProduct" th:attr="data-add=${item.id}"></span>
+                        <span class="glyphicon glyphicon-trash removeItem" th:attr="data-remove=${item.id}"></span>
                     </td>
                     <td th:text="${item.defaultPrice * item.quantityInCart}"></td>
                 </tr>
