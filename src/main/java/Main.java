@@ -7,12 +7,15 @@ import com.codecool.shop.controller.CartController;
 import com.codecool.shop.controller.ProductController;
 import com.codecool.shop.dao.*;
 import com.codecool.shop.dao.implementation.*;
+import com.codecool.shop.databaseConnection.SelectQuery;
 import com.codecool.shop.model.*;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 import spark.template.thymeleaf.ThymeleafTemplateEngine;
 
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.HashMap;
 //import org.json.simple.JSONObject;
 
@@ -20,6 +23,14 @@ public class Main {
 
     public static void main(String[] args) {
 
+        try {
+            SelectQuery select = new SelectQuery("users", null, "*");
+            select.process();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         // default server settings
         exception(Exception.class, (e, req, res) -> e.printStackTrace());
         staticFileLocation("/public");
