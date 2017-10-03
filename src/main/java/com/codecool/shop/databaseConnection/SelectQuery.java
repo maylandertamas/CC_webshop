@@ -26,6 +26,7 @@ public class SelectQuery extends DatabaseConnection {
 
                 statement.setString(1,columns);
                 statement.setString(2,tableName);
+                System.out.println(statement);
                 ResultSet rs = statement.executeQuery();
                 while (rs.next()) {
                    System.out.println(rs.getString(1));

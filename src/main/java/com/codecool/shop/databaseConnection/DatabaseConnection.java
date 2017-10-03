@@ -34,7 +34,7 @@ public abstract class  DatabaseConnection {
         FileReader readFile = null;
 
         try {
-            readFile = new FileReader("connection.properties");
+            readFile = new FileReader("connection_properties.txt");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
