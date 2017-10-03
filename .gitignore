@@ -1,7 +1,7 @@
 *.class
 
 
-connection.properties
+*.properties
 
 # OS-X
 **/.DS_Store
