@@ -56,6 +56,8 @@ public class ProductCategoryDaoMemJDBC implements ProductCategoryDao {
         statement.setInt(1,id);
         ExecuteQuery delete = new ExecuteQuery(statement);
         delete.process();
+        DATA.remove(id);
+
     }
 
     @Override
