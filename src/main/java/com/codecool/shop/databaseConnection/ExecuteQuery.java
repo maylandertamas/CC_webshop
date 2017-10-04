@@ -11,7 +11,7 @@ public class ExecuteQuery extends DatabaseConnection {
     private HashMap<String, ArrayList<String>> queryData = new HashMap<>();
     private PreparedStatement statement;
 
-    public ExecuteQuery(PreparedStatement statement) throws IOException {
+    public ExecuteQuery(PreparedStatement statement) throws IOException, SQLException {
         this.statement = statement;
     }
 

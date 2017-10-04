@@ -13,14 +13,11 @@ import java.util.Map;
 
 public abstract class  DatabaseConnection {
 
-    private static Map<String,String> connectionData = readConnectonFileData();
+    private static Map<String,String> connectionData = readConnectionFileData();
     private static final String DATABASE = "jdbc:postgresql://"+ connectionData.get("url").trim() +"/"
                                             + connectionData.get("database").trim();
     private static final String DB_USER = connectionData.get("user");
     private static final String DB_PASSWORD = connectionData.get("password");
-
-    public DatabaseConnection() throws IOException {
-    }
 
     public static Connection getConnection() throws SQLException {
         return DriverManager.getConnection(
@@ -29,7 +26,7 @@ public abstract class  DatabaseConnection {
                 DB_PASSWORD);
     }
 
-    private static Map<String,String> readConnectonFileData() {
+    private static Map<String,String> readConnectionFileData() {
         Map<String, String> connectionData = new HashMap<>();
 
         FileReader readFile = null;
