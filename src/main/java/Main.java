@@ -7,7 +7,8 @@ import com.codecool.shop.controller.CartController;
 import com.codecool.shop.controller.ProductController;
 import com.codecool.shop.dao.*;
 import com.codecool.shop.dao.implementation.*;
-import com.codecool.shop.databaseConnection.SelectQuery;
+import com.codecool.shop.databaseConnection.DatabaseConnection;
+import com.codecool.shop.databaseConnection.ExecuteQuery;
 import com.codecool.shop.model.*;
 import spark.ModelAndView;
 import spark.Request;
@@ -15,6 +16,8 @@ import spark.Response;
 import spark.template.thymeleaf.ThymeleafTemplateEngine;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.HashMap;
 //import org.json.simple.JSONObject;
@@ -23,8 +26,12 @@ public class Main {
 
     public static void main(String[] args) {
 
+
         try {
-            SelectQuery select = new SelectQuery("users", "2", "*");
+            Connection db = DatabaseConnection.getConnection();
+            PreparedStatement statement = db.prepareStatement("SELECT * FROM users WHERE id = ?;");
+            statement.setInt(1, 1);
+            ExecuteQuery select = new ExecuteQuery(statement);
             select.process();
             System.out.println(select.getDatabaseData());
         } catch (IOException e) {
@@ -32,8 +39,11 @@ public class Main {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         // default server settings
         exception(Exception.class, (e, req, res) -> e.printStackTrace());
+
+
         staticFileLocation("/public");
         port(8888);
 
@@ -48,7 +58,7 @@ public class Main {
 
         // Equivalent with above
         get("/index", (Request req, Response res) -> {
-           return new ThymeleafTemplateEngine().render( ProductController.renderProducts(req, res));
+            return new ThymeleafTemplateEngine().render(ProductController.renderProducts(req, res));
         });
 
         get("/index/add", (Request req, Response res) -> {
@@ -59,7 +69,7 @@ public class Main {
         });
 
         get("/refresh-cart", (Request req, Response res) -> {
-            return new ThymeleafTemplateEngine().render( CartController.renderProducts(req, res));
+            return new ThymeleafTemplateEngine().render(CartController.renderProducts(req, res));
         });
 
         get("/index/substract-product", (Request req, Response res) -> {
@@ -111,7 +121,6 @@ public class Main {
         // Add this line to your project to enable the debug screen
         enableDebugScreen();
     }
-
     public static void populateData() {
 
         ProductDao productDataStore = ProductDaoMem.getInstance();

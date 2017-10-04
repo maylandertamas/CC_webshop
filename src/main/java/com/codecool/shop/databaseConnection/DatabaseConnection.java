@@ -22,7 +22,7 @@ public abstract class  DatabaseConnection {
     public DatabaseConnection() throws IOException {
     }
 
-    private Connection getConnection() throws SQLException {
+    public static Connection getConnection() throws SQLException {
         return DriverManager.getConnection(
                 DATABASE,
                 DB_USER,
@@ -58,10 +58,10 @@ public abstract class  DatabaseConnection {
 
     public void process() throws SQLException {
         Connection connectToDB = getConnection();
-        action(connectToDB);
+        action();
         closeConnection(connectToDB);
     }
-    public abstract void action(Connection dbConnection);
+    public abstract void action();
 
     public void closeConnection(Connection dbConnection) throws SQLException {
         dbConnection.close();
