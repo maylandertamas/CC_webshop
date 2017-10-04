@@ -123,7 +123,7 @@ public class Main {
         enableDebugScreen();
     }
     public static void populateData() {
-
+/*
         ProductDao productDataStore = ProductDaoMem.getInstance();
         ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
         SupplierDao supplierDataStore = SupplierDaoMem.getInstance();
@@ -158,7 +158,7 @@ public class Main {
         productDataStore.add(new Product("99 Problems, but a b**ch ain't one Pimp Necklace", 99, "USD", "Now with free MK1911 with armor piercing bullets.", neklace, amazon));
         productDataStore.add(new Product("No Competition Pimp Necklace", 999, "USD", "Don't you talk back to me boi!", neklace, amazon));
         productDataStore.add(new Product("Be Kind to B**ches Pimp Necklace", 369, "USD", "Daddy be warm and fuzzy.", neklace, amazon));
-
+*/
     }
 
 
