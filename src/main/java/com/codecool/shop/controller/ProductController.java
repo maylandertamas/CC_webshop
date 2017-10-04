@@ -6,7 +6,10 @@ import com.codecool.shop.dao.ProductCategoryDao;
 import com.codecool.shop.dao.ProductDao;
 import com.codecool.shop.dao.SupplierDao;
 import com.codecool.shop.dao.implementation.ProductCategoryDaoMem;
+
 import com.codecool.shop.dao.implementation.ProductDAOMemJBDC;
+import com.codecool.shop.dao.implementation.ProductCategoryDaoMemJDBC;
+
 import com.codecool.shop.dao.implementation.ProductDaoMem;
 import com.codecool.shop.dao.implementation.SupplierDaoMem;
 import com.codecool.shop.model.Product;
@@ -27,12 +30,14 @@ public class ProductController {
     public static ModelAndView renderProducts(Request req, Response res) throws IOException, SQLException {
 
         Map params = new HashMap<>();
+
         //String productCategoryId = req.queryParams("cid");
         //String supplierId = req.queryParams("sid");
         //ProductDao productDataStore = ProductDaoMem.getInstance();
         ProductDao productDataStoreDB = ProductDAOMemJBDC.getInstance();
         //productDataStoreDB.getAll();
-        ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
+        ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMemJDBC.getInstance();
+
         SupplierDao supplierDataStore = SupplierDaoMem.getInstance();
 
         System.out.println(productDataStoreDB.getAll());
