@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -55,12 +56,14 @@ public abstract class  DatabaseConnection {
         return connectionData;
     }
 
-    public void process() throws SQLException {
+    public HashMap<String, ArrayList<String>> process() throws SQLException {
         Connection connectToDB = getConnection();
-        action(connectToDB);
+        HashMap<String, ArrayList<String>> queryResult = action(connectToDB);
         closeConnection(connectToDB);
+        return queryResult;
+
     }
-    public abstract void action(Connection dbConnection);
+    public abstract HashMap<String, ArrayList<String>> action(Connection dbConnection);
 
     public void closeConnection(Connection dbConnection) throws SQLException {
         dbConnection.close();

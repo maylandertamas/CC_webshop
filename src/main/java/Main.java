@@ -24,8 +24,8 @@ public class Main {
     public static void main(String[] args) {
 
         try {
-            SelectQuery select = new SelectQuery("users", null, "*");
-            select.process();
+            SelectQuery select = new SelectQuery("users", "2", "*");
+            System.out.println(select.process());
         } catch (IOException e) {
             e.printStackTrace();
         } catch (SQLException e) {
