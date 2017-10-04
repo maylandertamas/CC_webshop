@@ -56,14 +56,12 @@ public abstract class  DatabaseConnection {
         return connectionData;
     }
 
-    public HashMap<String, ArrayList<String>> process() throws SQLException {
+    public void process() throws SQLException {
         Connection connectToDB = getConnection();
-        HashMap<String, ArrayList<String>> queryResult = action(connectToDB);
+        action(connectToDB);
         closeConnection(connectToDB);
-        return queryResult;
-
     }
-    public abstract HashMap<String, ArrayList<String>> action(Connection dbConnection);
+    public abstract void action(Connection dbConnection);
 
     public void closeConnection(Connection dbConnection) throws SQLException {
         dbConnection.close();

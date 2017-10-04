@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class SelectQuery extends DatabaseConnection {
+    private HashMap<String, ArrayList<String>> queryData = new HashMap<>();
     private String tableName;
     private String where;
     private String columns;
@@ -17,8 +18,7 @@ public class SelectQuery extends DatabaseConnection {
     }
 
     @Override
-    public HashMap<String, ArrayList<String>> action(Connection dbConnection){
-        HashMap<String, ArrayList<String>> databaseData = new HashMap<>();
+    public void action(Connection dbConnection){
         try {
             ResultSet rs;
             if (where == null) {
@@ -38,11 +38,13 @@ public class SelectQuery extends DatabaseConnection {
                 for (int i = 1; i <= numberOfColumns; i++) {
                     temporaryData.add(rs.getString(i));
                 }
-                databaseData.put(rs.getString(1), temporaryData);
+                queryData.put(rs.getString(1), temporaryData);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return databaseData;
+    }
+    public HashMap<String, ArrayList<String>> getDatabaseData() {
+        return queryData;
     }
 }
