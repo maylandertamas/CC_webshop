@@ -43,8 +43,8 @@ public class SupplierDaoMemJDBC implements SupplierDao {
             ExecuteQuery select = new ExecuteQuery(statement);
             select.process();
             HashMap<String, ArrayList<String>> result = select.getDatabaseData();
-            String name = result.get(id).get(1);
-            String description = result.get(id).get(2);
+            String name = result.get(String.valueOf(id)).get(1);
+            String description = result.get(String.valueOf(id)).get(2);
             foundSupplier = new Supplier(name, description);
             foundSupplier.setId(id);
         } catch (IOException e) {
@@ -58,13 +58,14 @@ public class SupplierDaoMemJDBC implements SupplierDao {
 
     @Override
     public void remove(int id) {
+        DATA.remove(this.find(id));
         try {
             Connection dbConnection = DatabaseConnection.getConnection();
-            PreparedStatement statement = dbConnection.prepareStatement("DELETE * FROM supplier WHERE id =?;");
+            PreparedStatement statement = dbConnection.prepareStatement("DELETE FROM supplier WHERE id =?;");
             statement.setInt(1, id);
             ExecuteQuery delete = new ExecuteQuery(statement);
             delete.process();
-            DATA.remove(id);
+
         } catch (IOException e){
             e.printStackTrace();
         } catch (SQLException e){
