@@ -45,8 +45,6 @@ public class ProductDaoMem implements ProductDao {
 
     @Override
     public List<Product> getAll() {
-        System.out.println("Mem: ");
-        System.out.println(DATA);
         return DATA;
     }
 
