@@ -42,12 +42,12 @@ public class ProductCategoryDaoMemJDBC implements ProductCategoryDao {
         statement.setInt(1,id);
         ExecuteQuery select = new ExecuteQuery(statement);
         select.process();
-        String name = select.getDatabaseData().get(id).get(1);
-        String  department = select.getDatabaseData().get(id).get(2);
-        String description = select.getDatabaseData().get(id).get(3);
-        ProductCategory foundProduct = new ProductCategory(name, department, description);
-        foundProduct.setId(id);
-        return foundProduct;
+        String name = select.getDatabaseData().get(String.valueOf(id)).get(1);
+        String  department = select.getDatabaseData().get(String.valueOf(id)).get(2);
+        String description = select.getDatabaseData().get(String.valueOf(id)).get(3);
+        ProductCategory foundProductCategory = new ProductCategory(name, department, description);
+        foundProductCategory.setId(id);
+        return foundProductCategory;
     }
 
     @Override
