@@ -51,6 +51,7 @@ public class ProductDAOMemJBDC implements ProductDao{
 
     @Override
     public List<Product> getAll() throws SQLException, IOException {
+        DATA.clear();
         Connection db = DatabaseConnection.getConnection();
         PreparedStatement statement = db.prepareStatement("SELECT * FROM products;");
         ExecuteQuery select = new ExecuteQuery(statement);

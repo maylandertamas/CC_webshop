@@ -40,7 +40,6 @@ public class ProductController {
 
         SupplierDao supplierDataStore = SupplierDaoMem.getInstance();
 
-        System.out.println(productDataStoreDB.getAll());
 
         //params.put("allSuppliers", supplierDataStore.getAll());
         //params.put("allCategory", productCategoryDataStore.getAll());
@@ -52,8 +51,11 @@ public class ProductController {
             params.put("products", supplierDataStore.find(Integer.parseInt(supplierId)).getProducts());
         } else {*/
             //params.put("suppliers", supplierDataStore.getAll());
-            //params.put("category", productCategoryDataStore.getAll());
+        System.out.println(productCategoryDataStore.getAll());
+        System.out.println(productDataStoreDB.getAll());
+            params.put("category", productCategoryDataStore.getAll());
             params.put("products", productDataStoreDB.getAll());
+
         /*}*/
         //CartInterface cart = Cart.getCart();
         //params.put("productSumm", cart.summUp());
