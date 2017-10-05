@@ -74,6 +74,7 @@ public class SupplierDaoMemJDBC implements SupplierDao {
 
     @Override
     public List<Supplier> getAll() {
+        DATA.clear();
         try {
             Connection db = DatabaseConnection.getConnection();
             PreparedStatement statement = db.prepareStatement("SELECT * FROM supplier;");
