@@ -7,40 +7,17 @@ import com.codecool.shop.controller.CartController;
 import com.codecool.shop.controller.ProductController;
 import com.codecool.shop.dao.*;
 import com.codecool.shop.dao.implementation.*;
-import com.codecool.shop.databaseConnection.DatabaseConnection;
-import com.codecool.shop.databaseConnection.ExecuteQuery;
 import com.codecool.shop.model.*;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 import spark.template.thymeleaf.ThymeleafTemplateEngine;
-
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.HashMap;
-//import org.json.simple.JSONObject;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        /*
-        try {
-            Connection db = DatabaseConnection.getConnection();
-            PreparedStatement statement = db.prepareStatement("SELECT * FROM users WHERE id = ?;");
-            statement.setInt(1, 1);
-            ExecuteQuery select = new ExecuteQuery(statement);
-            select.process();
-            System.out.println(select.getDatabaseData());
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-*/
         // default server settings
         exception(Exception.class, (e, req, res) -> e.printStackTrace());
 
@@ -65,7 +42,6 @@ public class Main {
         get("/index/add", (Request req, Response res) -> {
             ProductDao productDataStore = ProductDAOMemJBDC.getInstance();
             CartInterface cart = Cart.getCart();
-            System.out.println(productDataStore.find(Integer.valueOf(req.queryParams("id"))));
             cart.addToCart(productDataStore.find(Integer.valueOf(req.queryParams("id"))));
             return cart.generateCartSize();
         });

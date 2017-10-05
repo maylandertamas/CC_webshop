@@ -1,16 +1,12 @@
 package com.codecool.shop.model;
 
 import com.codecool.shop.controller.ProductController;
-import com.codecool.shop.databaseConnection.DatabaseConnection;
-import com.codecool.shop.databaseConnection.ExecuteQuery;
-
 import java.io.IOException;
-import java.sql.Array;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 
@@ -40,10 +36,21 @@ public class Supplier extends BaseModel {
     }
 
     public ArrayList getCategory() throws IOException, SQLException {
-        List<ProductCategory> allCategories = ProductController.getProductCategoryDataStore().getAll();
+
         ArrayList<Product> allProducts = this.getProducts();
+        Set<Integer> ProductCategoryIds = new HashSet<>();
+        ArrayList<Integer> IdsWithoutDuplications = new ArrayList<>();
         ArrayList<ProductCategory> result = new ArrayList<>();
-        allProducts.forEach(pc -> result.add(pc.getProductCategory()));
+        allProducts.forEach(pc -> ProductCategoryIds.add(pc.getProductCategory().getId()));
+        ProductCategoryIds.addAll(ProductCategoryIds);
+        IdsWithoutDuplications.addAll(ProductCategoryIds);
+        ProductCategoryIds.clear();
+        for (ProductCategory prodcat : ProductController.getProductCategoryDataStore().getAll()) {
+            if (IdsWithoutDuplications.contains(prodcat.getId())) {
+                result.add(prodcat);
+            }
+        }
+
         return result;
     }
 
