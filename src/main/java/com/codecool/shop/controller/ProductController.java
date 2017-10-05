@@ -22,20 +22,21 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ProductController {
+    private static ProductDao productDataStore;
+    private static ProductCategoryDao productCategoryDataStore;
+    private static SupplierDao supplierDataStore;
     public static ModelAndView renderProducts(Request req, Response res) throws IOException, SQLException {
 
         Map params = new HashMap<>();
 
         String productCategoryId = req.queryParams("cid");
         String supplierId = req.queryParams("sid");
-        ProductDao productDataStore = ProductDAOMemJBDC.getInstance();
-        ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMemJDBC.getInstance();
+        productDataStore = ProductDAOMemJBDC.getInstance();
+        productCategoryDataStore = ProductCategoryDaoMemJDBC.getInstance();
+        supplierDataStore = SupplierDaoMemJDBC.getInstance();
 
-        SupplierDao supplierDataStore = SupplierDaoMemJDBC.getInstance();
-
-
-        params.put("allSuppliers", supplierDataStore.getAll());
         params.put("allCategory", productCategoryDataStore.getAll());
+        params.put("allSuppliers", supplierDataStore.getAll());
         if (productCategoryId != null) {
             params.put("category", productCategoryDataStore.find(Integer.valueOf(productCategoryId)));
             params.put("products", productDataStore.getBy(productCategoryDataStore.find(Integer.valueOf(productCategoryId))));
@@ -55,4 +56,11 @@ public class ProductController {
         return new ModelAndView(params, "product/index");
     }
 
+    public static ProductCategoryDao getProductCategoryDataStore() {
+        return productCategoryDataStore;
+    }
+
+    public static ProductDao getProductDataStore() {
+        return productDataStore;
+    }
 }
