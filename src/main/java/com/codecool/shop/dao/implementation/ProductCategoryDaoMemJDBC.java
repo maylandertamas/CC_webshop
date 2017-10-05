@@ -33,44 +33,64 @@ public class ProductCategoryDaoMemJDBC implements ProductCategoryDao {
 
     @Override
     public void add(ProductCategory category) {
+        category.setId(DATA.size() + 1);
+        DATA.add(category);
+    }
+
+    @Override
+    public ProductCategory find(int id) {
+        ProductCategory foundProduct = null;
+        try {
+            PreparedStatement statement = dbConnection.prepareStatement("SELECT * FROM prod_cat WHERE id=?;");
+            statement.setInt(1,id);
+            ExecuteQuery select = new ExecuteQuery(statement);
+            select.process();
+            String name = select.getDatabaseData().get(String.valueOf(id)).get(1);
+            String department = select.getDatabaseData().get(String.valueOf(id)).get(2);
+            String description = select.getDatabaseData().get(String.valueOf(id)).get(3);
+            foundProduct = new ProductCategory(name, department, description);
+            foundProduct.setId(id);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return foundProduct;
 
     }
 
     @Override
-    public ProductCategory find(int id) throws SQLException, IOException {
-        PreparedStatement statement = dbConnection.prepareStatement("SELECT * FROM prod_cat WHERE id=?;");
-        statement.setInt(1,id);
-        ExecuteQuery select = new ExecuteQuery(statement);
-        select.process();
-        String name = select.getDatabaseData().get(String.valueOf(id)).get(1);
-        String  department = select.getDatabaseData().get(String.valueOf(id)).get(2);
-        String description = select.getDatabaseData().get(String.valueOf(id)).get(3);
-        ProductCategory foundProductCategory = new ProductCategory(name, department, description);
-        foundProductCategory.setId(id);
-        return foundProductCategory;
+    public void remove(int id) {
+        DATA.remove(this.find(id));
+        try {
+            PreparedStatement statement = dbConnection.prepareStatement("DELETE FROM prod_cat WHERE id =?;");
+            statement.setInt(1,id);
+            ExecuteQuery delete = new ExecuteQuery(statement);
+            delete.process();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
-    public void remove(int id) throws SQLException, IOException {
-        PreparedStatement statement = dbConnection.prepareStatement("DELETE * FROM prod_cat WHERE id =?;");
-        statement.setInt(1,id);
-        ExecuteQuery delete = new ExecuteQuery(statement);
-        delete.process();
-        DATA.remove(id);
-
-    }
-
-    @Override
-    public List<ProductCategory> getAll() throws SQLException, IOException {
+    public List<ProductCategory> getAll() {
         DATA.clear();
-        PreparedStatement statement = dbConnection.prepareStatement("SELECT * FROM prod_cat;");
-        ExecuteQuery select = new ExecuteQuery(statement);
-        select.process();
-        for (ArrayList<String> array : select.getDatabaseData().values()) {
-            ProductCategory newProductCategory = new ProductCategory(array.get(1),array.get(2), array.get(3));
-            newProductCategory.setId(Integer.valueOf(array.get(0)));
-            DATA.add(newProductCategory);
-
+        try {
+            PreparedStatement statement = dbConnection.prepareStatement("SELECT * FROM prod_cat;");
+            ExecuteQuery select = new ExecuteQuery(statement);
+            select.process();
+            for (ArrayList<String> array : select.getDatabaseData().values()) {
+                ProductCategory newProductCategory = new ProductCategory(array.get(1), array.get(2), array.get(3));
+                newProductCategory.setId(Integer.valueOf(array.get(0)));
+                DATA.add(newProductCategory);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return DATA;
     }

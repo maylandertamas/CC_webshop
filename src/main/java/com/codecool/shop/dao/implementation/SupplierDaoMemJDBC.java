@@ -62,13 +62,14 @@ public class SupplierDaoMemJDBC implements SupplierDao {
 
     @Override
     public void remove(int id) {
+        DATA.remove(this.find(id));
         try {
             Connection dbConnection = DatabaseConnection.getConnection();
-            PreparedStatement statement = dbConnection.prepareStatement("DELETE * FROM supplier WHERE id =?;");
+            PreparedStatement statement = dbConnection.prepareStatement("DELETE FROM supplier WHERE id =?;");
             statement.setInt(1, id);
             ExecuteQuery delete = new ExecuteQuery(statement);
             delete.process();
-            DATA.remove(id);
+
         } catch (IOException e){
             e.printStackTrace();
         } catch (SQLException e){

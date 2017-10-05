@@ -1,4 +1,4 @@
 url localhost:5432
-database codecoolshop
-user maylandertamas
-password fantastic
+database ctf_webshop_test_db
+user postgres
+password jelszo24
