@@ -37,10 +37,6 @@ public class ProductDAOMemJBDC implements ProductDao{
     public void add(Product product) throws SQLException, IOException {
         product.setId(DATA.size() + 1);
         DATA.add(product);
-        Connection db = DatabaseConnection.getConnection();
-        PreparedStatement statement = db.prepareStatement("SELECT * FROM products;");
-        ExecuteQuery select = new ExecuteQuery(statement);
-        select.process();
     }
 
     @Override

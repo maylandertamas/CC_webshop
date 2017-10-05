@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class SupplierDaoMemJDBCTest {
 
     private static SupplierDaoMemJDBC supplierJDBC = SupplierDaoMemJDBC.getInstance();
-    private static Supplier supplierTest = new Supplier("testName", "testDescription");
+    private static Supplier supplierTest = new Supplier("CheapStyle", "null");
     List<Supplier> DATA = supplierJDBC.getAll();
 
     @BeforeEach
@@ -22,7 +22,7 @@ class SupplierDaoMemJDBCTest {
 
     @Test
     void testGetInstanceReturnsSameInstance() {
-        SupplierDaoMem testSupplier = SupplierDaoMem.getInstance();
+        SupplierDaoMemJDBC testSupplier = SupplierDaoMemJDBC.getInstance();
         assertEquals(supplierJDBC, testSupplier);
     }
 
@@ -41,7 +41,7 @@ class SupplierDaoMemJDBCTest {
         List<Supplier> testList = new ArrayList<>();
         Supplier supplierFound = supplierJDBC.find(1);
         testList.add(supplierFound);
-        assertEquals(supplierTest, supplierFound);
+        assertEquals(supplierTest.toString(), supplierFound.toString());
     }
 
     @Test

@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ProductDAOMemJBDCTest {
 
-    private static ProductDAOMemJBDC productJDBC;
+    private static ProductDAOMemJBDC productJDBC = ProductDAOMemJBDC.getInstance();
     private static ProductCategory testProductCategory = new ProductCategory("testName", "testDep", "testDesc");
     private static Supplier testSupplier = new Supplier("testSup", "testDesc");
     private static Product testProduct = new Product(
@@ -33,7 +33,6 @@ class ProductDAOMemJBDCTest {
 
     @BeforeEach
     void setUp() {
-        productJDBC = ProductDAOMemJBDC.getInstance();
         DATA.clear();
     }
 
@@ -49,7 +48,7 @@ class ProductDAOMemJBDCTest {
 
     @Test
     void testGetInstanceReturnsSameInstance() {
-        ProductDaoMem testProduct = ProductDaoMem.getInstance();
+        ProductDAOMemJBDC testProduct = ProductDAOMemJBDC.getInstance();
         assertEquals(productJDBC, testProduct);
     }
 
