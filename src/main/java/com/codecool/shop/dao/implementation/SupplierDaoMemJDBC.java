@@ -1,8 +1,11 @@
 package com.codecool.shop.dao.implementation;
 
+import com.codecool.shop.controller.ProductController;
 import com.codecool.shop.dao.SupplierDao;
 import com.codecool.shop.databaseConnection.DatabaseConnection;
 import com.codecool.shop.databaseConnection.ExecuteQuery;
+import com.codecool.shop.model.Product;
+import com.codecool.shop.model.ProductCategory;
 import com.codecool.shop.model.Supplier;
 
 import java.io.IOException;
@@ -12,6 +15,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class SupplierDaoMemJDBC implements SupplierDao {
     private List<Supplier> DATA = new ArrayList<>();
@@ -43,8 +47,8 @@ public class SupplierDaoMemJDBC implements SupplierDao {
             ExecuteQuery select = new ExecuteQuery(statement);
             select.process();
             HashMap<String, ArrayList<String>> result = select.getDatabaseData();
-            String name = result.get(id).get(1);
-            String description = result.get(id).get(2);
+            String name = result.get(String.valueOf(id)).get(1);
+            String description = result.get(String.valueOf(id)).get(2);
             foundSupplier = new Supplier(name, description);
             foundSupplier.setId(id);
         } catch (IOException e) {
@@ -77,10 +81,11 @@ public class SupplierDaoMemJDBC implements SupplierDao {
         DATA.clear();
         try {
             Connection db = DatabaseConnection.getConnection();
-            PreparedStatement statement = db.prepareStatement("SELECT * FROM supplier;");
+            PreparedStatement statement = db.prepareStatement("SELECT supplier.id, supplier.name, supplier.description," +
+                                                    " products.productcatid, products.supplierid FROM supplier " +
+                                                    "INNER JOIN products ON supplier.id = products.supplierid;");
             ExecuteQuery select = new ExecuteQuery(statement);
             select.process();
-            HashMap<String, ArrayList<String>> result = select.getDatabaseData();
             for (ArrayList<String> array: select.getDatabaseData().values()){
                 Supplier newSupplier = new Supplier(array.get(1), array.get(2));
                 newSupplier.setId(Integer.valueOf(array.get(0)));

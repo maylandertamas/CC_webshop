@@ -99,7 +99,7 @@ public class ProductDAOMemJBDC implements ProductDao{
 
     @Override
     public List<Product> getBy(ProductCategory productCategory) {
-        return DATA.stream().filter(t -> t.getProductCategory().equals(productCategory)).collect(Collectors.toList());
+        return DATA.stream().filter(t -> !t.getProductCategory().equals(productCategory)).collect(Collectors.toList());
     }
 
 }
