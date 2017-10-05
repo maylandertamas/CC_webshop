@@ -1,5 +1,6 @@
 package com.codecool.shop.dao.implementation;
 
+import com.codecool.shop.model.ProductCategory;
 import com.codecool.shop.model.Supplier;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -9,11 +10,11 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class SupplierDaoMemTest {
+class ProductCategoryDaoMemTest {
 
-    private static SupplierDaoMem supplierDao = SupplierDaoMem.getInstance();
-    private static Supplier supplierTest = new Supplier("testName", "testDescription");
-    List<Supplier> DATA = supplierDao.getAll();
+    private static ProductCategoryDaoMem prodCatDao = ProductCategoryDaoMem.getInstance();
+    private static ProductCategory prodCatTest = new ProductCategory("testName", "testDepartment", "testDescription");
+    List<ProductCategory> DATA = prodCatDao.getAll();
 
     @BeforeEach
     void clearDATA() {
@@ -22,13 +23,13 @@ class SupplierDaoMemTest {
 
     @Test
     void testGetInstanceReturnsSameInstance() {
-        SupplierDaoMem testSupplier = SupplierDaoMem.getInstance();
-        assertEquals(supplierDao, testSupplier);
+        ProductCategoryDaoMem testProdCat = ProductCategoryDaoMem.getInstance();
+        assertEquals(prodCatDao, testProdCat);
     }
 
     @Test
     void testAddAddsToDATAList() {
-        supplierDao.add(supplierTest);
+        prodCatDao.add(prodCatTest);
         int DATALength = DATA.size();
         int controlLength = 1;
         assertEquals(controlLength, DATALength);
@@ -37,22 +38,22 @@ class SupplierDaoMemTest {
 
     @Test
     void testFindFindsTheSupplier() {
-        supplierDao.add(supplierTest);
-        Supplier supplierFound = supplierDao.find(1);
-        assertEquals(supplierTest, supplierFound);
+        prodCatDao.add(prodCatTest);
+        ProductCategory supplierFound = prodCatDao.find(1);
+        assertEquals(prodCatTest, supplierFound);
     }
 
     @Test
     void testRemoveRemovesSupplierFromDATA() {
-        supplierDao.add(supplierTest);
-        supplierDao.remove(1);
+        prodCatDao.add(prodCatTest);
+        prodCatDao.remove(1);
         int DATALength = DATA.size();
         assertEquals(0, DATALength);
     }
 
     @Test
     void testGetAllReturnsArrayList() {
-        List<Supplier> testList = new ArrayList<>();
+        List<ProductCategory> testList = new ArrayList<>();
         assertEquals(DATA, testList);
     }
 
