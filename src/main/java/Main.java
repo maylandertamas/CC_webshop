@@ -63,8 +63,9 @@ public class Main {
         });
 
         get("/index/add", (Request req, Response res) -> {
-            ProductDao productDataStore = ProductDaoMem.getInstance();
+            ProductDao productDataStore = ProductDAOMemJBDC.getInstance();
             CartInterface cart = Cart.getCart();
+            System.out.println(productDataStore.find(Integer.valueOf(req.queryParams("id"))));
             cart.addToCart(productDataStore.find(Integer.valueOf(req.queryParams("id"))));
             return cart.generateCartSize();
         });
