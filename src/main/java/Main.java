@@ -27,7 +27,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-
+        /*
         try {
             Connection db = DatabaseConnection.getConnection();
             PreparedStatement statement = db.prepareStatement("SELECT * FROM users WHERE id = ?;");
@@ -40,7 +40,7 @@ public class Main {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
+*/
         // default server settings
         exception(Exception.class, (e, req, res) -> e.printStackTrace());
 

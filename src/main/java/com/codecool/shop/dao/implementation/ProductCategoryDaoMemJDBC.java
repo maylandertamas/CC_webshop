@@ -62,6 +62,7 @@ public class ProductCategoryDaoMemJDBC implements ProductCategoryDao {
 
     @Override
     public List<ProductCategory> getAll() throws SQLException, IOException {
+        DATA.clear();
         PreparedStatement statement = dbConnection.prepareStatement("SELECT * FROM prod_cat;");
         ExecuteQuery select = new ExecuteQuery(statement);
         select.process();

@@ -1,7 +1,6 @@
 package com.codecool.shop.model;
 
 import java.util.Currency;
-import java.util.Locale;
 
 public class Product extends BaseModel {
 
