@@ -1,13 +1,9 @@
 package com.codecool.shop.dao.implementation;
 
-import com.codecool.shop.controller.ProductController;
 import com.codecool.shop.dao.SupplierDao;
 import com.codecool.shop.databaseConnection.DatabaseConnection;
 import com.codecool.shop.databaseConnection.ExecuteQuery;
-import com.codecool.shop.model.Product;
-import com.codecool.shop.model.ProductCategory;
 import com.codecool.shop.model.Supplier;
-
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,7 +11,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class SupplierDaoMemJDBC implements SupplierDao {
     private List<Supplier> DATA = new ArrayList<>();
