@@ -1,0 +1,7 @@
+
+com.codecool.shop.Cart
+com.codecool.shop.controller
+com.codecool.shop.dao
+com.codecool.shop.dao.implementation
+com.codecool.shop.databaseConnection
+com.codecool.shop.model

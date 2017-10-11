@@ -26,11 +26,7 @@ public class ExecuteQuery extends DatabaseConnection {
         this.statement = statement;
     }
 
-    /**
-     * This method is overridden (from DatabaseConnection abstract class).
-     * @throws SQLException if query was written wrong.
-     *
-     */
+    /**This method is overridden (from DatabaseConnection abstract class).*/
     @Override
     public void action(){
         try {

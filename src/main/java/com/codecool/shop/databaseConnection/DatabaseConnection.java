@@ -35,7 +35,9 @@ public abstract class  DatabaseConnection {
     private static final String DB_PASSWORD = connectionData.get("password");
 
 
-    /** Setup database connection through DriverManager */
+    /** Setup database connection through DriverManager
+     * @throws SQLException If database connection details are wrong.
+     * @return the setup connection */
     public static Connection getConnection() throws SQLException {
         logger.info("Database name was:{}, DB Username was: {}", DATABASE, DB_USER);
         return DriverManager.getConnection(
@@ -83,7 +85,7 @@ public abstract class  DatabaseConnection {
 
 
     /**
-     * Connecting to database -> run query -> closing connection
+     * Connecting to database, run query, closing connection
      * @throws SQLException If the query was written wrong.
      */
     public void process() throws SQLException {
